@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="DimitryExercise2.View.TeachersController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:DimitryExercise2.ViewModels"
+             mc:Ignorable="d"
+             DataContext="viewmodels:TeacherControllerViewModel">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Teacher }">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="auto" Header="Teachers Name"  DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate}" />
+                        <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding CoursesTeach}" />
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
