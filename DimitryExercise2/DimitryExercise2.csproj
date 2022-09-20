@@ -88,8 +88,16 @@
     <Compile Include="Model\Teacher.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditStudentControllerViewModel.cs" />
+    <Compile Include="ViewModels\EditTeacherControllerViewModel.cs" />
     <Compile Include="ViewModels\StudentControllerViewModel.cs" />
     <Compile Include="ViewModels\TeacherControllerViewModel.cs" />
+    <Compile Include="View\EditStudent.xaml.cs">
+      <DependentUpon>EditStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTeacher.xaml.cs">
+      <DependentUpon>EditTeacher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StudentControler.xaml.cs">
       <DependentUpon>StudentControler.xaml</DependentUpon>
     </Compile>
@@ -108,6 +116,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\EditStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StudentControler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
