@@ -7,24 +7,24 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="People" EntityType="Model.Store.People" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="People_Student" EntityType="Model.Store.People_Student" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="People_Teacher" EntityType="Model.Store.People_Teacher" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StudentTeacher" EntityType="Model.Store.StudentTeacher" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_StudentTeacher_Student" Association="Model.Store.FK_StudentTeacher_Student">
-      <End Role="Student" EntitySet="People_Student" />
-      <End Role="StudentTeacher" EntitySet="StudentTeacher" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentTeacher_Teacher" Association="Model.Store.FK_StudentTeacher_Teacher">
+    <EntitySet Name="People_Student" EntityType="Model.Store.People_Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeacherStudent" EntityType="Model.Store.TeacherStudent" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_TeacherStudent_Teacher" Association="Model.Store.FK_TeacherStudent_Teacher">
       <End Role="Teacher" EntitySet="People_Teacher" />
-      <End Role="StudentTeacher" EntitySet="StudentTeacher" />
+      <End Role="TeacherStudent" EntitySet="TeacherStudent" />
     </AssociationSet>
-    <AssociationSet Name="FK_Student_inherits_Person" Association="Model.Store.FK_Student_inherits_Person">
-      <End Role="Person" EntitySet="People" />
+    <AssociationSet Name="FK_TeacherStudent_Student" Association="Model.Store.FK_TeacherStudent_Student">
       <End Role="Student" EntitySet="People_Student" />
+      <End Role="TeacherStudent" EntitySet="TeacherStudent" />
     </AssociationSet>
     <AssociationSet Name="FK_Teacher_inherits_Person" Association="Model.Store.FK_Teacher_inherits_Person">
       <End Role="Person" EntitySet="People" />
       <End Role="Teacher" EntitySet="People_Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_inherits_Person" Association="Model.Store.FK_Student_inherits_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Student" EntitySet="People_Student" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="People">
@@ -35,64 +35,50 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="BirthDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="People_Student">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="CoursesLearn" Type="int" Nullable="false" />
-    <Property Name="Grade" Type="float" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="People_Teacher">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="CoursesTeach" Type="int" Nullable="false" />
+    <Property Name="Courses" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="StudentTeacher">
+  <EntityType Name="People_Student">
     <Key>
-      <PropertyRef Name="Students_Id" />
-      <PropertyRef Name="Teachers_Id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Students_Id" Type="int" Nullable="false" />
-    <Property Name="Teachers_Id" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="float" Nullable="false" />
+    <Property Name="Courses" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_StudentTeacher_Student">
-    <End Role="Student" Type="Model.Store.People_Student" Multiplicity="1" />
-    <End Role="StudentTeacher" Type="Model.Store.StudentTeacher" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="StudentTeacher">
-        <PropertyRef Name="Students_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_StudentTeacher_Teacher">
-    <End Role="StudentTeacher" Type="Model.Store.StudentTeacher" Multiplicity="*" />
+  <EntityType Name="TeacherStudent">
+    <Key>
+      <PropertyRef Name="Teacher_Id" />
+      <PropertyRef Name="Students_Id" />
+    </Key>
+    <Property Name="Teacher_Id" Type="int" Nullable="false" />
+    <Property Name="Students_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TeacherStudent_Teacher">
     <End Role="Teacher" Type="Model.Store.People_Teacher" Multiplicity="1" />
+    <End Role="TeacherStudent" Type="Model.Store.TeacherStudent" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Teacher">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="StudentTeacher">
-        <PropertyRef Name="Teachers_Id" />
+      <Dependent Role="TeacherStudent">
+        <PropertyRef Name="Teacher_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Student_inherits_Person">
-    <End Role="Person" Type="Model.Store.People" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Student" Type="Model.Store.People_Student" Multiplicity="0..1" />
+  <Association Name="FK_TeacherStudent_Student">
+    <End Role="TeacherStudent" Type="Model.Store.TeacherStudent" Multiplicity="*" />
+    <End Role="Student" Type="Model.Store.People_Student" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Person">
+      <Principal Role="Student">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Student">
-        <PropertyRef Name="Id" />
+      <Dependent Role="TeacherStudent">
+        <PropertyRef Name="Students_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -110,15 +96,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Student_inherits_Person">
+    <End Role="Person" Type="Model.Store.People" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Model.Store.People_Student" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="People" EntityType="Model.Person" />
-          <AssociationSet Name="StudentTeacher" Association="Model.StudentTeacher">
-            <End Role="Student" EntitySet="People" />
+          <AssociationSet Name="TeacherStudent" Association="Model.TeacherStudent">
             <End Role="Teacher" EntitySet="People" />
+            <End Role="Student" EntitySet="People" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Person" Abstract="true">
@@ -130,13 +130,13 @@
           <Property Name="BirthDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Teacher" BaseType="Model.Person" >
-          <Property Name="CoursesTeach" Type="Model.Course" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="Model.StudentTeacher" FromRole="Teacher" ToRole="Student" />
+          <Property Name="Courses" Type="Model.Courses" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Model.TeacherStudent" FromRole="Teacher" ToRole="Student" />
         </EntityType>
         <EntityType Name="Student" BaseType="Model.Person" >
-          <Property Name="CoursesLearn" Type="Model.Course" Nullable="false" />
           <Property Name="Grade" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Teachers" Relationship="Model.StudentTeacher" FromRole="Student" ToRole="Teacher" />
+          <Property Name="Courses" Type="Model.Courses" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="Model.TeacherStudent" FromRole="Student" ToRole="Teacher" />
         </EntityType>
         <EnumType Name="Course">
           <Member Name="CSharp" />
@@ -148,9 +148,19 @@
           <Member Name="JavaScript" />
           <Member Name="Sql" />
         </EnumType>
-        <Association Name="StudentTeacher">
-          <End Type="Model.Student" Role="Student" Multiplicity="*" />
+        <EnumType Name="Courses" IsFlags="true">
+          <Member Name="Sql" Value="1" />
+          <Member Name="Azure" Value="2" />
+          <Member Name="Html" Value="4" />
+          <Member Name="Css" Value="8" />
+          <Member Name="JavaScript" Value="16" />
+          <Member Name="CSharp" Value="32" />
+          <Member Name="OOP" Value="64" />
+          <Member Name="AspNet" Value="128" />
+        </EnumType>
+        <Association Name="TeacherStudent">
           <End Type="Model.Teacher" Role="Teacher" Multiplicity="*" />
+          <End Type="Model.Student" Role="Student" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -166,26 +176,26 @@
           <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Student)">
-        <MappingFragment StoreEntitySet="People_Student">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="CoursesLearn" ColumnName="CoursesLearn" />
-          <ScalarProperty Name="Grade" ColumnName="Grade" />
-        </MappingFragment>
-      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model.Teacher)">
         <MappingFragment StoreEntitySet="People_Teacher">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="CoursesTeach" ColumnName="CoursesTeach" />
+          <ScalarProperty Name="Courses" ColumnName="Courses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Student)">
+        <MappingFragment StoreEntitySet="People_Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Courses" ColumnName="Courses" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="StudentTeacher" TypeName="Model.StudentTeacher" StoreEntitySet="StudentTeacher">
+    <AssociationSetMapping Name="TeacherStudent" TypeName="Model.TeacherStudent" StoreEntitySet="TeacherStudent">
+      <EndProperty Name="Teacher">
+        <ScalarProperty Name="Id" ColumnName="Teacher_Id" />
+      </EndProperty>
       <EndProperty Name="Student">
         <ScalarProperty Name="Id" ColumnName="Students_Id" />
-      </EndProperty>
-      <EndProperty Name="Teacher">
-        <ScalarProperty Name="Id" ColumnName="Teachers_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

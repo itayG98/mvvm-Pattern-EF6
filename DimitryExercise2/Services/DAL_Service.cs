@@ -1,9 +1,7 @@
-﻿using System;
+﻿using DimitryExercise2.Model;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DimitryExercise2
 {
@@ -11,13 +9,14 @@ namespace DimitryExercise2
     {
         private static readonly DAL_Service _dataService = new DAL_Service();
 
-        public  ModelContainer data;
+        public ModelContainer data;
+        public Action<Teacher> GetTeachersStudentsEvent;
 
         public static DAL_Service Init
         {
             get
             {
-                if (_dataService == null) 
+                if (_dataService == null)
                     return new DAL_Service();
                 else return _dataService;
             }
@@ -27,19 +26,16 @@ namespace DimitryExercise2
             data = new ModelContainer();
         }
 
-        public IEnumerable<Teacher> GetTeachers() 
-        {
-            return (data.People.OfType<Teacher>());
-        }
+        public IEnumerable<Teacher> GetTeachers() => (data.People.OfType<Teacher>());
 
-        public IEnumerable<Student> GetStudents()
-        {
-            return (data.People.OfType<Student>());
-        }
+        public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void AddPerson(Person p)
+        public void GetTeachersStudents(Teacher t)
+            => GetTeachersStudentsEvent?.Invoke(t);
+        public void AddPerson(params Person[] persons)
         {
-            data.People.Add(p);
+            foreach (Person p in persons)
+                data.People.Add(p);
             data.SaveChanges();
         }
     }

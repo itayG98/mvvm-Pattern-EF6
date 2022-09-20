@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DimitryExercise2.Model;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DimitryExercise2.ViewModels
 {
@@ -23,7 +19,7 @@ namespace DimitryExercise2.ViewModels
         public void GetTeachers()
         {
             teachers.Clear();
-            foreach (Teacher teacher in DAL.GetTeachers())
+            foreach(Teacher teacher in DAL.GetTeachers())
                 teachers.Add(teacher);
         }
     }

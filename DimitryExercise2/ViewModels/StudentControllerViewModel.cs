@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using DimitryExercise2.Model;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DimitryExercise2.ViewModels
 {
@@ -11,15 +15,20 @@ namespace DimitryExercise2.ViewModels
 
         public StudentControllerViewModel()
         {
+            DAL.GetTeachersStudentsEvent += DAL_Service_GetTeachersStudents;
             students = new ObservableCollection<Student>();
-            GetStudents();
+            Students.Clear();
+            DAL.GetStudents().ToList().ForEach(s => Students.Add(s));
         }
 
-        public void GetStudents() 
+        public void DAL_Service_GetTeachersStudents(Teacher t)
         {
-            students.Clear();
-            foreach(Student student in DAL.GetStudents())
-                Students.Add(student);
+            if (t != null)
+            {
+                Students.Clear();
+                foreach (var stud in t.Students)
+                    Students.Add(stud);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DimitryExercise2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace DimitryExercise2.View
     /// </summary>
     public partial class TeachersController : UserControl
     {
+        private DAL_Service DAL = DAL_Service.Init;
         public TeachersController()
         {
             InitializeComponent();
+        }
+        private void OnSelectedChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender.Equals(LVTeachers) && LVTeachers.SelectedItem is Teacher teacher)
+                DAL.GetTeachersStudents(teacher);
         }
     }
 }

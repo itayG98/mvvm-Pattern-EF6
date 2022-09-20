@@ -15,13 +15,13 @@
             <RowDefinition/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Teachers }">
+        <ListView x:Name="LVTeachers" ItemsSource="{Binding Teachers}" SelectionChanged="OnSelectedChange">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Width="auto" Header="Teachers Name"  DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate,StringFormat=d}" />
-                        <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding CoursesTeach}" />
+                        <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding Courses}" />
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

@@ -21,7 +21,7 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Width="auto" Header="Student Name"  DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate,StringFormat=d}}" />
+                        <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate,StringFormat=d}" />
                         <GridViewColumn Width="auto" Header="Grade"  DisplayMemberBinding="{Binding Grade}" />
                     </GridView.Columns>
                 </GridView>

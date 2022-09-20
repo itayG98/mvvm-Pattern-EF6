@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DimitryExercise2
+namespace DimitryExercise2.Model
 {
     using System;
     using System.Data.Entity;
