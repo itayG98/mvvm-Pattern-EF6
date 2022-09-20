@@ -4,20 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewmodels="clr-namespace:DimitryExercise2.ViewModels"
-             mc:Ignorable="d"
-             DataContext="viewmodels:TeacherControllerViewModel">
-    
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <viewmodels:TeacherControllerViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Teacher }">
+        <ListView ItemsSource="{Binding Teachers }">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Width="auto" Header="Teachers Name"  DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate}" />
+                        <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate,StringFormat=d}" />
                         <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding CoursesTeach}" />
                     </GridView.Columns>
                 </GridView>
