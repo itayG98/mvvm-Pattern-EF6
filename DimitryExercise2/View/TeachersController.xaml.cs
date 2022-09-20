@@ -30,6 +30,7 @@ namespace DimitryExercise2.View
         {
             if (sender.Equals(LVTeachers) && LVTeachers.SelectedItem is Teacher teacher)
                 DAL.GetTeachersStudents(teacher);
+
         }
     }
 }

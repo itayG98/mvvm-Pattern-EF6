@@ -11,11 +11,17 @@
         <Style TargetType="ListView">
             <Setter Property="Margin" Value="5 5 0 0"/>
         </Style>
+        <Style TargetType="UserControl">
+            <Setter Property="Margin" Value="15 15 0 0"/>
+            <Setter Property="Padding" Value="20 20 0 0"/>
+        </Style>
 
         <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="FontWeight" Value="ExtraBold"/>
         </Style>
+        
+        
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +29,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Views:StudentControler Grid.Row="0" Grid.Column="0"  />

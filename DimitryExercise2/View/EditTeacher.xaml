@@ -10,8 +10,21 @@
     <UserControl.DataContext>
         <viewmodels:EditTeacherControllerViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Label Content="{Binding CurTeacher.Id}" />
+            <Label Content="_Name:" Target="{Binding ElementName=txtName}" />
+            <TextBox Name="txtName" Text="{Binding CurTeacher.Name}" />
+            <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
+            <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate}"/>
+        </StackPanel>
+        <ListView x:Name="LVCourses"  Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding CurTeacher.Courses}">
+        </ListView>
     </Grid>
 </UserControl>
