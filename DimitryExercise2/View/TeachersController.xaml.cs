@@ -29,8 +29,7 @@ namespace DimitryExercise2.View
         private void OnSelectedChange(object sender, SelectionChangedEventArgs e)
         {
             if (sender.Equals(LVTeachers) && LVTeachers.SelectedItem is Teacher teacher)
-                DAL.GetTeachersStudents(teacher);
-
+                DAL.ChoosedTeacher(teacher);
         }
     }
 }

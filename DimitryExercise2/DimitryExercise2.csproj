@@ -92,6 +92,7 @@
     <Compile Include="ViewModels\EditTeacherControllerViewModel.cs" />
     <Compile Include="ViewModels\StudentControllerViewModel.cs" />
     <Compile Include="ViewModels\TeacherControllerViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="View\EditStudent.xaml.cs">
       <DependentUpon>EditStudent.xaml</DependentUpon>
     </Compile>

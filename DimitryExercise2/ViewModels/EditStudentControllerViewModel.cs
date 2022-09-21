@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DimitryExercise2.ViewModels
+namespace DimitryExercise2.ViewModels 
 {
-    public class EditStudentControllerViewModel
+    public class EditStudentControllerViewModel : ViewModelBase
     {
-    public IObservable<Student> CurStudent { get; set; }
+        DAL_Service _dalService = DAL_Service.Init;
+        public IObservable<Student> CurStudent { get; set; }
         public EditStudentControllerViewModel() 
         {
 

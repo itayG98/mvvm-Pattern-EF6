@@ -24,7 +24,9 @@
             <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
             <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate}"/>
         </StackPanel>
-        <ListView x:Name="LVCourses"  Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" ItemsSource="{Binding CurTeacher.Courses}">
+
+        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding teachingCourses}">
         </ListView>
+
     </Grid>
 </UserControl>

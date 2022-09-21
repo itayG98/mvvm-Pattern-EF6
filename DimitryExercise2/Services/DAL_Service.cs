@@ -10,7 +10,7 @@ namespace DimitryExercise2
         private static readonly DAL_Service _dataService = new DAL_Service();
 
         public ModelContainer data;
-        public Action<Teacher> GetTeachersStudentsEvent;
+        public Action<Teacher> ChoosedTeacherEvent;
 
         public static DAL_Service Init
         {
@@ -30,8 +30,8 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void GetTeachersStudents(Teacher t)
-            => GetTeachersStudentsEvent?.Invoke(t);
+        public void ChoosedTeacher(Teacher t)
+            => ChoosedTeacherEvent?.Invoke(t);
         public void AddPerson(params Person[] persons)
         {
             foreach (Person p in persons)
