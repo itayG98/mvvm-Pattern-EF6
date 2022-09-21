@@ -1,5 +1,6 @@
 ﻿using DimitryExercise2.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -9,7 +10,6 @@ namespace DimitryExercise2.ViewModels
     {
         readonly DAL_Service DAL = DAL_Service.Init;
         private Teacher curTeacher;
-        public ObservableCollection<Courses> teachingCourses;
 
         public Teacher CurTeacher
         {
@@ -20,14 +20,11 @@ namespace DimitryExercise2.ViewModels
                 {
                     curTeacher = value;
                     NotifyPropertyChanged(nameof(CurTeacher));
-                    teachingCourses.Clear();
-                    teachingCourses.Append(CurTeacher.Courses);
                 }
             }
         }
         public EditTeacherControllerViewModel()
         {
-            teachingCourses = new ObservableCollection<Courses>();
             DAL.ChoosedTeacherEvent += ChosedTeacher;
         }
 
