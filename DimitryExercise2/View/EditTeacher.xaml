@@ -25,11 +25,11 @@
             <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate}"/>
         </StackPanel>
 
-        <ListView x:Name="LVTCourses" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding CurTeacher}">
+        <ListView Name="LVTCourses" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Courses}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding Courses}" />
+                        <GridViewColumn Width="auto" Header="Courses"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

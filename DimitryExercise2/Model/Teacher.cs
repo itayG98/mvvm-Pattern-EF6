@@ -11,18 +11,30 @@ namespace DimitryExercise2.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Teacher : Person
+    using System.ComponentModel;
+
+    public partial class Teacher : Person, INotifyPropertyChanged
     {
+        private Courses courses;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Teacher()
         {
             this.Students = new HashSet<Student>();
         }
-    
-        public Courses Courses { get; set; }
-    
+
+        public Courses Courses
+        {
+            get => courses; set
+            {
+                courses = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Courses)));
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -23,14 +23,28 @@ namespace DimitryExercise2.ViewModels
                 }
             }
         }
+
+        public ObservableCollection<Courses> Courses { get; set; }
+
         public EditTeacherControllerViewModel()
         {
+            Courses = new ObservableCollection<Courses>();
             DAL.ChoosedTeacherEvent += ChosedTeacher;
         }
 
         private void ChosedTeacher(Teacher t)
         {
-            if (t != null) CurTeacher = t;
+            if (t != null)
+            {
+                CurTeacher = t;
+                Courses.Clear();
+
+                foreach (var item in Enum.GetValues(typeof(Courses)).Cast<Courses>())
+                {
+                    if (t.Courses.HasFlag(item))
+                        Courses.Add(item);
+                }
+            }
         }
     }
 }
