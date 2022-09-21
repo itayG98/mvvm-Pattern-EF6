@@ -34,17 +34,13 @@ namespace DimitryExercise2.ViewModels
 
         private void ChosedTeacher(Teacher t)
         {
-            if (t != null)
-            {
-                CurTeacher = t;
-                Courses.Clear();
-
-                foreach (var item in Enum.GetValues(typeof(Courses)).Cast<Courses>())
-                {
-                    if (t.Courses.HasFlag(item))
-                        Courses.Add(item);
-                }
-            }
+            if (t is null)
+                return;
+            CurTeacher = t;
+            Courses.Clear();
+            foreach (var item in Enum.GetValues(typeof(Courses)).Cast<Courses>())
+                if (t.Courses.HasFlag(item))
+                    Courses.Add(item);
         }
     }
 }

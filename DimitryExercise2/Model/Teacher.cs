@@ -13,7 +13,7 @@ namespace DimitryExercise2.Model
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    public partial class Teacher : Person, INotifyPropertyChanged
+    public partial class Teacher : Person
     {
         private Courses courses;
 
@@ -23,18 +23,9 @@ namespace DimitryExercise2.Model
             this.Students = new HashSet<Student>();
         }
 
-        public Courses Courses
-        {
-            get => courses; set
-            {
-                courses = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Courses)));
-            }
-        }
+        public Courses Courses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

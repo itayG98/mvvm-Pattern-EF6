@@ -21,7 +21,7 @@
                     <GridView.Columns>
                         <GridViewColumn Width="auto" Header="Teachers Name"  DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Width="auto" Header="Birth date"  DisplayMemberBinding="{Binding BirthDate,StringFormat=d}" />
-                        <GridViewColumn Width="auto" Header="Courses"  DisplayMemberBinding="{Binding Courses}" />
+                        <GridViewColumn Width="auto" Header="Teach Courses"  DisplayMemberBinding="{Binding Courses}" />
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
