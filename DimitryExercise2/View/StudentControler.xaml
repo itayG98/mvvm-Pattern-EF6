@@ -16,7 +16,7 @@
             <RowDefinition/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Students}">
+        <ListView x:Name="LVStudents" ItemsSource="{Binding Students}" SelectionChanged="OnSelectedChange">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

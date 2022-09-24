@@ -1,6 +1,7 @@
 ﻿using DimitryExercise2.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace DimitryExercise2.ViewModels
 {

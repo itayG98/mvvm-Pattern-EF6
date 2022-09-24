@@ -10,7 +10,8 @@ namespace DimitryExercise2
         private static readonly DAL_Service _dataService = new DAL_Service();
 
         public ModelContainer data;
-        public Action<Teacher> ChoosedTeacherEvent;
+        public Action<Teacher> ChoosedTeacherEvent; 
+        public Action<Student> ChoosedStudentEvent;
 
         public static DAL_Service Init
         {
@@ -38,5 +39,8 @@ namespace DimitryExercise2
                 data.People.Add(p);
             data.SaveChanges();
         }
+
+        public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
+
     }
 }

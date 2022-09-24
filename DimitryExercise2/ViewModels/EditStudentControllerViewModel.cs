@@ -9,11 +9,28 @@ namespace DimitryExercise2.ViewModels
 {
     public class EditStudentControllerViewModel : ViewModelBase
     {
-        DAL_Service _dalService = DAL_Service.Init;
-        public IObservable<Student> CurStudent { get; set; }
+        DAL_Service DAL = DAL_Service.Init;
+        private Student curStudent;
+        public Student CurStudent 
+        { get 
+            { return curStudent; }
+            set
+            {
+                if (value != null)
+                {
+                    curStudent = value;
+                    NotifyPropertyChanged(nameof(CurStudent));
+                }
+            }
+        }
         public EditStudentControllerViewModel() 
         {
+            DAL.ChoosedStudentEvent += DAL_Service_GetStudent;
+        }
 
+        private void DAL_Service_GetStudent(Student s)
+        {
+            CurStudent = s;
         }
     }
 }
