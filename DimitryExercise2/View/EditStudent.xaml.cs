@@ -20,9 +20,11 @@ namespace DimitryExercise2.View
     /// </summary>
     public partial class EditStudent : UserControl
     {
+        DAL_Service DAL = DAL_Service.Init;
         public EditStudent()
         {
             InitializeComponent();
         }
+
     }
 }

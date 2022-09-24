@@ -1,7 +1,10 @@
 ﻿using DimitryExercise2.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DimitryExercise2
 {
@@ -31,6 +34,12 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
+        public void UpdatePersonAsync(Person p)
+        {
+            var thread = new Thread (() =>data.People.AddOrUpdate(p));
+            thread.Start();
+        }
+
         public void ChoosedTeacher(Teacher t)
             => ChoosedTeacherEvent?.Invoke(t);
         public void AddPerson(params Person[] persons)
@@ -39,7 +48,6 @@ namespace DimitryExercise2
                 data.People.Add(p);
             data.SaveChanges();
         }
-
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
 
     }

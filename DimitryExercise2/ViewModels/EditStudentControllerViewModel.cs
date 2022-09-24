@@ -32,5 +32,6 @@ namespace DimitryExercise2.ViewModels
         {
             CurStudent = s;
         }
+
     }
 }
