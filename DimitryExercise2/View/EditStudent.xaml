@@ -18,11 +18,13 @@
 
         <StackPanel Grid.Column="0">
             <Label Content="_Id:" Target="{Binding ElementName=txtId}"/>
-            <TextBox Name="txtId" Text="{Binding CurStudent.Id}" />
+            <TextBlock Name="txtId" Text="{Binding CurStudent.Id}" />
+            <Label Content="_Grade:" Target="{Binding ElementName=Grade}"/>
+            <TextBox Name="Grade" Text="{Binding CurStudent.Grade ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="_Name:" Target="{Binding ElementName=txtName}" />
-            <TextBox Name="txtName" Text="{Binding CurStudent.Name}" />
+            <TextBox Name="txtName" Text="{Binding CurStudent.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
-            <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurStudent.BirthDate}"/>
+            <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurStudent.BirthDate , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
     </Grid>

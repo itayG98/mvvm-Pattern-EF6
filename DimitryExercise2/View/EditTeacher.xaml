@@ -18,11 +18,12 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <Label Content="{Binding CurTeacher.Id}" />
+            <Label Content="_Id:" Target="{Binding ElementName=txtId}"/>
+            <TextBlock Name="txtId" Text="{Binding CurTeacher.Id}" />
             <Label Content="_Name:" Target="{Binding ElementName=txtName}" />
-            <TextBox Name="txtName" Text="{Binding CurTeacher.Name}" />
+            <TextBox Name="txtName" Text="{Binding CurTeacher.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
-            <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate}"/>
+            <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <ListView Name="LVTCourses" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Courses}"  SelectionMode="Multiple">
