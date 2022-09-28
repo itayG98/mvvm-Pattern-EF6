@@ -25,16 +25,22 @@
             <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
             <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <ListView Name="LVTCourses" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Courses}"  SelectionMode="Multiple">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Width="auto" Header="Course"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
+            <ComboBox Name="AddCourse" Grid.Row="0" ItemsSource="{Binding OtherCourses}" Text="Add Courses" IsEditable="True" />
+            <ListView Name="LVTCourses" Grid.Row="1" ItemsSource="{Binding Courses}"  SelectionMode="Multiple">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Width="auto" Header="Course"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </UserControl>
