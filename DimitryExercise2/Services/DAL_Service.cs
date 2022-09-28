@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace DimitryExercise2
 {
+    /// <summary>
+    /// Data Acces Layer
+    /// </summary>
     public class DAL_Service
     {
         private static readonly DAL_Service _dataService = new DAL_Service();
@@ -15,6 +16,8 @@ namespace DimitryExercise2
         public ModelContainer data;
         public Action<Teacher> ChoosedTeacherEvent; 
         public Action<Student> ChoosedStudentEvent;
+        public Action EditPersonEvent;
+
 
         public static DAL_Service Init
         {
@@ -34,19 +37,14 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void UpdatePersonAsync(Person p)
-        {
-            var thread = new Thread (() =>data.People.AddOrUpdate(p));
-            thread.Start();
-        }
-
         public void ChoosedTeacher(Teacher t)
             => ChoosedTeacherEvent?.Invoke(t);
-        public void AddPerson(params Person[] persons)
+        public void AddOrUpdatePerson(params Person[] persons)
         {
             foreach (Person p in persons)
-                data.People.Add(p);
+                data.People.AddOrUpdate(p);
             data.SaveChanges();
+            EditPersonEvent?.Invoke();
         }
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
 

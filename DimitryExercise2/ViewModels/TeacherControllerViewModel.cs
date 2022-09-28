@@ -5,7 +5,7 @@ namespace DimitryExercise2.ViewModels
 {
     public class TeacherControllerViewModel : ViewModelBase
     {
-        DAL_Service DAL = DAL_Service.Init;
+        readonly DAL_Service DAL = DAL_Service.Init;
         private readonly ObservableCollection<Teacher> teachers;
         public ObservableCollection<Teacher> Teachers => teachers;
 
@@ -13,6 +13,7 @@ namespace DimitryExercise2.ViewModels
         {
             teachers = new ObservableCollection<Teacher>();
             GetTeachers();
+            DAL.EditPersonEvent += GetTeachers;
         }
 
         public void GetTeachers()
