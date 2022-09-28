@@ -3,39 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Views="clr-namespace:DimitryExercise2.View"
+        xmlns:Views="clr-namespace:DimitryExercise2.View" 
+        xmlns:VMS="clr-namespace:DimitryExercise2.ViewModels"
         mc:Ignorable="d"
         Title="College" Height="450" Width="800">
 
-    <Window.Resources>
-        <Style TargetType="ListView">
-            <Setter Property="Margin" Value="5 5 0 0"/>
-        </Style>
-        <Style TargetType="UserControl">
-            <Setter Property="Margin" Value="15 15 0 0"/>
-            <Setter Property="Padding" Value="20 20 0 0"/>
-        </Style>
-
-        <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="FontWeight" Value="ExtraBold"/>
-        </Style>
-        
-        
-    </Window.Resources>
+    <Window.DataContext>
+        <VMS:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Views:StudentControler Grid.Row="0" Grid.Column="0"  />
         <Views:TeachersController Grid.Row="0" Grid.Column="1"  />
-        <Views:EditStudent Grid.Row="1" Grid.Column="0"/>
-        <Views:EditTeacher Grid.Row="1" Grid.Column="1"/>
+        <ProgressBar Name="SaveBar" Grid.Row="1" Grid.ColumnSpan="2" Width="500" Height="35" Value="{Binding SaveBarValue}"     />
+        <Views:EditStudent Grid.Row="2" Grid.Column="0"/>
+        <Views:EditTeacher Grid.Row="2" Grid.Column="1"/>
 
     </Grid>
 </Window>

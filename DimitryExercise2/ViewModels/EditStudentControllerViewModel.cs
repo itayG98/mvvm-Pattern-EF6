@@ -29,10 +29,6 @@ namespace DimitryExercise2.ViewModels
             DAL.ChoosedStudentEvent += DAL_Service_GetStudent;
         }
 
-        private void DAL_Service_GetStudent(Student s)
-        {
-            CurStudent = s;
-        }
-
+        private void DAL_Service_GetStudent(Student s) => CurStudent = s;
     }
 }

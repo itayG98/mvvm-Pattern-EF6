@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="ViewModels\EditStudentControllerViewModel.cs" />
     <Compile Include="ViewModels\EditTeacherControllerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\StudentControllerViewModel.cs" />
     <Compile Include="ViewModels\TeacherControllerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
