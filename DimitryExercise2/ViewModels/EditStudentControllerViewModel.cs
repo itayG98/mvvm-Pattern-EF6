@@ -20,6 +20,7 @@ namespace DimitryExercise2.ViewModels
                 {
                     curStudent = value;
                     NotifyPropertyChanged(nameof(CurStudent));
+                    DAL.AddOrUpdatePerson(CurStudent);
                 }
             }
         }

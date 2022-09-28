@@ -21,7 +21,7 @@
             <Label Content="_Id:" Target="{Binding ElementName=txtId}"/>
             <TextBlock Name="txtId" Text="{Binding CurTeacher.Id}" />
             <Label Content="_Name:" Target="{Binding ElementName=txtName}" />
-            <TextBox Name="txtName" Text="{Binding CurTeacher.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Name="txtName" Text="{Binding CurTeacher.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="_BirthDate:" Target="{Binding ElementName=BirthPicker}" />
             <DatePicker x:Name="BirthPicker" SelectedDate="{Binding CurTeacher.BirthDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
@@ -36,7 +36,7 @@
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Width="auto" Header="Course"/>
+                            <GridViewColumn Header=" Click to delete course"/>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

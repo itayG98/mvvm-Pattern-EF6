@@ -6,7 +6,7 @@ namespace DimitryExercise2.ViewModels
 {
     public class StudentControllerViewModel : ViewModelBase
     {
-        DAL_Service DAL = DAL_Service.Init;
+        readonly DAL_Service DAL = DAL_Service.Init;
         private readonly ObservableCollection<Student> students;
 
         public ObservableCollection<Student> Students => students;

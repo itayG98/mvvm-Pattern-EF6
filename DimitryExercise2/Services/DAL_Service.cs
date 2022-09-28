@@ -13,8 +13,8 @@ namespace DimitryExercise2
     {
         private static readonly DAL_Service _dataService = new DAL_Service();
 
-        public ModelContainer data;
-        public Action<Teacher> ChoosedTeacherEvent; 
+        private readonly ModelContainer data;
+        public Action<Teacher> ChoosedTeacherEvent;
         public Action<Student> ChoosedStudentEvent;
         public Action EditPersonEvent;
 
@@ -41,10 +41,16 @@ namespace DimitryExercise2
             => ChoosedTeacherEvent?.Invoke(t);
         public void AddOrUpdatePerson(params Person[] persons)
         {
-            foreach (Person p in persons)
-                data.People.AddOrUpdate(p);
-            data.SaveChanges();
-            EditPersonEvent?.Invoke();
+            try
+            {
+                foreach (Person p in persons)
+                    data.People.AddOrUpdate(p);
+                data.SaveChanges();
+                EditPersonEvent?.Invoke();
+            }
+            catch (Exception)
+            {
+            }
         }
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
 
