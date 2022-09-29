@@ -46,7 +46,7 @@ namespace DimitryExercise2
             StartSavingUpdateEvent?.Invoke();
             try
             {
-                data.SaveChangesAsync();
+                data.SaveChanges();
             }
             catch (Exception)
             {
@@ -55,6 +55,7 @@ namespace DimitryExercise2
             finally 
             {
                 FinishedSavedUpdateEvent?.Invoke();
+                RefreshListsEvent?.Invoke();
             }
         }
         public void ChoosedTeacher(Teacher t)
@@ -70,7 +71,7 @@ namespace DimitryExercise2
             {
                 foreach (Person p in persons)
                     data.People.AddOrUpdate(p);
-                data.SaveChangesAsync();
+                data.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -80,6 +81,7 @@ namespace DimitryExercise2
             finally
             {
                 FinishedSavedUpdateEvent?.Invoke();
+                RefreshListsEvent?.Invoke();
             }
         }
     }
