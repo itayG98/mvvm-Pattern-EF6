@@ -68,6 +68,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RefreshCommand.cs" />
+    <Compile Include="Model\Course.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Courses.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -10,12 +10,16 @@
 namespace DimitryExercise2.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public abstract partial class Person
+    public enum Course : int
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public System.DateTime BirthDate { get; set; }
+        CSharp = 0,
+        OOP = 1,
+        Azure = 2,
+        Solid = 3,
+        Html = 4,
+        Css = 5,
+        JavaScript = 6,
+        Sql = 7
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -14,7 +15,11 @@ namespace DimitryExercise2.Command
 
         public bool CanExecute(object parameter) => true;
 
+        public void Execute(object parameter)
+        {
 
-        public void Execute(object parameter) => DAL.RefreshLists();
+            DAL.SaveChangesAsync();
+            DAL.RefreshLists();
+        }
     }
 }

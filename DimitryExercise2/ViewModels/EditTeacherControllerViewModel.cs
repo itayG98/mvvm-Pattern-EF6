@@ -62,7 +62,6 @@ namespace DimitryExercise2.ViewModels
             Courses = new ObservableCollection<Courses>();
             OtherCourses = new ObservableCollection<Courses>();
             DAL.ChoosedTeacherEvent += ChosedTeacher;
-
         }
 
         private void ChosedTeacher(Teacher t)

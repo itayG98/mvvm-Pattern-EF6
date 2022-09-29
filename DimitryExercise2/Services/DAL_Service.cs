@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading;
 
 namespace DimitryExercise2
 {
@@ -38,6 +39,7 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
+        public void SaveChangesAsync() => data.SaveChangesAsync();
         public void ChoosedTeacher(Teacher t)
             => ChoosedTeacherEvent?.Invoke(t);
         public void AddOrUpdatePerson(params Person[] persons)
@@ -58,7 +60,6 @@ namespace DimitryExercise2
             }
         }
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
-
         public void RefreshLists() => RefreshListsEvent?.Invoke();
     }
 }

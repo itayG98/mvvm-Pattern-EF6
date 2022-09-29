@@ -5,14 +5,18 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-
+        <Style TargetType="Window">
+            <Setter Property="Margin" Value="50"/>
+            <Setter Property="Padding" Value="50"/>
+        </Style>
+        
         <Style TargetType="UserControl">
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
         </Style>
 
         <Style TargetType="ListView">
-            <Setter Property="Margin" Value="0 5 0 0"/>
+            <Setter Property="Margin" Value="5 5 0 0"/>
         </Style>
         
         <Style x:Key="ListViewStyle" TargetType="{x:Type GridViewColumnHeader}">
