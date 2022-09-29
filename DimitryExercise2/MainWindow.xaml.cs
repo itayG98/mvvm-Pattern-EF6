@@ -37,12 +37,10 @@ namespace DimitryExercise2
             //    new Student() {Name="Shon Mandes",BirthDate= new DateTime(1996,12,12) ,Grade=87,Courses =Courses.AspNet}
             //};
             //List<Teacher> teachers = new List<Teacher>() {
-            //    new Teacher() {Name="Avi Dayan" ,Courses= Courses.Sql|Courses.CSharp },
-            //    new Teacher() {Name="Ron Amir" ,Courses= Courses.Azure|Courses.Css|Courses.OOP },
-            //    new Teacher() {Name="Yoel Geva" ,Courses= Courses.Html|Courses.AspNet|Courses.Sql }
+            //    new Teacher() {Name="Avi Dayan" ,BirthDate= new DateTime(1968,7,5) ,Courses= Courses.Sql|Courses.CSharp },
+            //    new Teacher() {Name="Ron Amir" ,BirthDate= new DateTime(1978,10,12) ,Courses= Courses.Azure|Courses.Css|Courses.OOP },
+            //    new Teacher() {Name="Yoel Geva",BirthDate= new DateTime(1988,10,10) ,Courses= Courses.Html|Courses.AspNet|Courses.Sql }
             //};
-            //DAL.AddOrUpdatePeople(teachers.ToArray());
-            //DAL.AddOrUpdatePeople(students.ToArray());
             //teachers[0].Students.Add(students[0]);
             //teachers[0].Students.Add(students[1]);
             //teachers[0].Students.Add(students[2]);
@@ -50,11 +48,10 @@ namespace DimitryExercise2
             //teachers[1].Students.Add(students[3]);
             //teachers[2].Students.Add(students[2]);
             //teachers[2].Students.Add(students[3]);
-
-            //DAL.AddOrUpdatePeople(teachers.ToArray());
-            //DAL.AddOrUpdatePeople(students.ToArray());
-
-
+            //List<Person> people = new List<Person>();
+            //people.AddRange(teachers);
+            //people.AddRange(students);
+            //DAL.AddOrUpdatePeople(people.ToArray());
         }
     }
 }

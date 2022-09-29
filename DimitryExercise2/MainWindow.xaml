@@ -6,7 +6,7 @@
         xmlns:Views="clr-namespace:DimitryExercise2.View" 
         xmlns:VMS="clr-namespace:DimitryExercise2.ViewModels"
         mc:Ignorable="d"
-        Title="College" Height="450" Width="800">
+        Title="College" Height="650" Width="800">
 
     <Window.DataContext>
         <VMS:MainViewModel/>
@@ -17,13 +17,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" /> 
+            <RowDefinition Height="4*" /> 
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Views:StudentControler Grid.Row="0" Grid.Column="0"  />
         <Views:TeachersController Grid.Row="0" Grid.Column="1"  />
-        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" Content="Save and Refresh" Command="{Binding RefreshButtonCommand}" IsEnabled="{Binding RefreshButtonCommandSate}"/>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" Content="Save and show all people" Command="{Binding RefreshButtonCommand}" IsEnabled="{Binding RefreshButtonCommandSate}"/>
         <Views:EditStudent Grid.Row="2" Grid.Column="0"/>
         <Views:EditTeacher Grid.Row="2" Grid.Column="1"/>
     </Grid>

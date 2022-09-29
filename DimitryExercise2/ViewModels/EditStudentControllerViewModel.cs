@@ -9,7 +9,7 @@ namespace DimitryExercise2.ViewModels
 {
     public class EditStudentControllerViewModel : ViewModelBase
     {
-        DAL_Service DAL = DAL_Service.Init;
+        readonly DAL_Service DAL = DAL_Service.Init;
         private Student curStudent;
         public Student CurStudent 
         { get 

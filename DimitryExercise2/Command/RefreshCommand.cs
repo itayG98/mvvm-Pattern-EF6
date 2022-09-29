@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace DimitryExercise2.Command
 {
-    public class RefreshCommand : ICommand 
+    public class RefreshCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -29,19 +29,23 @@ namespace DimitryExercise2.Command
         public RefreshCommand()
         {
             CanExecuteBool = true;
+            DAL.StartSavingUpdateEvent += Hold;
+            DAL.FinishedSavedUpdateEvent += Release;
         }
 
+        private void Hold() => CanExecuteBool = false;
+        private void Release() => CanExecuteBool = true;
         public bool CanExecute(object parameter) => CanExecuteBool;
 
         public void Execute(object parameter)
         {
             if (CanExecute(default))
             {
-                CanExecuteBool = false;
                 DAL.SaveChanges();
-                DAL.RefreshLists();
-                CanExecuteBool = true;
             }
         }
+
+
+
     }
 }

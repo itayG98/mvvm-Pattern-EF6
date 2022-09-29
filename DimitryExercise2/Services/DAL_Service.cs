@@ -18,7 +18,8 @@ namespace DimitryExercise2
         private readonly ModelContainer data;
         public Action<Teacher> ChoosedTeacherEvent;
         public Action<Student> ChoosedStudentEvent;
-        public Action SaveUpdateEvent;
+        public Action StartSavingUpdateEvent;
+        public Action FinishedSavedUpdateEvent;
         public Action RefreshListsEvent;
 
 
@@ -40,15 +41,20 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void SaveChanges()
+        public void  SaveChanges()
         {
+            StartSavingUpdateEvent?.Invoke();
             try
             {
-                data.SaveChanges();
+                data.SaveChangesAsync();
             }
             catch (Exception)
             {
                 //May use in future
+            }
+            finally 
+            {
+                FinishedSavedUpdateEvent?.Invoke();
             }
         }
         public void ChoosedTeacher(Teacher t)
@@ -59,6 +65,7 @@ namespace DimitryExercise2
 
         public void AddOrUpdatePeople(params Person[] persons)
         {
+            StartSavingUpdateEvent?.Invoke();
             try
             {
                 foreach (Person p in persons)
@@ -68,11 +75,11 @@ namespace DimitryExercise2
             catch (Exception ex)
             {
                 //Can alert here in future
-                string exe = ex.Message;
+                string msg = ex.Message;
             }
             finally
             {
-                SaveUpdateEvent?.Invoke();
+                FinishedSavedUpdateEvent?.Invoke();
             }
         }
     }
