@@ -1,9 +1,5 @@
 ﻿using DimitryExercise2.Command;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DimitryExercise2.ViewModels
@@ -12,11 +8,31 @@ namespace DimitryExercise2.ViewModels
     {
         readonly DAL_Service DAL = DAL_Service.Init;
         public ICommand RefreshButtonCommand { get; set; }
+        private bool _refreshButtonCommand;
+        public bool RefreshButtonCommandSate
+        {
+            get
+            {
+                _refreshButtonCommand = RefreshButtonCommand.CanExecute(default);
+                return _refreshButtonCommand;
+            }
+            private set
+            {
+                _refreshButtonCommand = value;
+                NotifyPropertyChanged(nameof(RefreshButtonCommandSate));
+            }
+        }
+
 
         public MainViewModel()
         {
             RefreshButtonCommand = new RefreshCommand();
+            RefreshButtonCommand.CanExecuteChanged += RefreshButtonCommand_CanExecuteChanged;
         }
+
+        private void RefreshButtonCommand_CanExecuteChanged(object sender, EventArgs e) =>
+
+            NotifyPropertyChanged(nameof(RefreshButtonCommandSate));
 
     }
 }

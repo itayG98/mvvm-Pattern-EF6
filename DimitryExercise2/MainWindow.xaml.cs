@@ -25,6 +25,7 @@ namespace DimitryExercise2
         {
             InitializeComponent();
             DAL.RefreshListsEvent?.Invoke();
+
         }
     }
 }

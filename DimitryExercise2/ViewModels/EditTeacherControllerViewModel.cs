@@ -20,7 +20,6 @@ namespace DimitryExercise2.ViewModels
                 {
                     curTeacher = value;
                     NotifyPropertyChanged(nameof(CurTeacher));
-                    DAL.AddOrUpdatePerson(curTeacher);
                 }
             }
         }
@@ -38,7 +37,6 @@ namespace DimitryExercise2.ViewModels
                     Courses.Add(value);
                     OtherCourses.Remove(value);
                     curTeacher.Courses |= value;
-                    DAL.AddOrUpdatePerson(curTeacher);
                 }
             }
         }
@@ -52,7 +50,6 @@ namespace DimitryExercise2.ViewModels
                     Courses.Remove(value);
                     OtherCourses.Add(value);
                     curTeacher.Courses ^= value;
-                    DAL.AddOrUpdatePerson(curTeacher);
                 }
             }
         }

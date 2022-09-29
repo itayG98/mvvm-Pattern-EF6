@@ -39,10 +39,24 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void SaveChangesAsync() => data.SaveChangesAsync();
+        public void SaveChanges() 
+        {
+            try
+            {
+                data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                //May use in future
+            }      
+        } 
         public void ChoosedTeacher(Teacher t)
-            => ChoosedTeacherEvent?.Invoke(t);
-        public void AddOrUpdatePerson(params Person[] persons)
+            => ChoosedTeacherEvent?.Invoke(t); 
+        public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
+        public void RefreshLists() => RefreshListsEvent?.Invoke();
+
+
+        /*public void AddOrUpdatePerson(params Person[] persons)
         {
             try
             {
@@ -58,8 +72,6 @@ namespace DimitryExercise2
             {
                 SaveUpdateEvent?.Invoke();
             }
-        }
-        public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
-        public void RefreshLists() => RefreshListsEvent?.Invoke();
+        }*/
     }
 }
