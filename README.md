@@ -12,7 +12,7 @@ https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c51359
 
  1. Use WPF with .NetFramework 4.8
  2. Generated an empty DataBase named `[DimitryExercise2]` in  `(localdb)\mssqllocaldb` in MSSQL
- 3. Download Entity Framework from NuGet package manager <a target="_blank" href="https://github.com/dotnet/ef6"/>
+ 3. Download Entity Framework from NuGet package manager <a target="_blank" href="https://github.com/dotnet/ef6">Docs</a>
  
 https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c5135931881f9f2/DimitryExercise2/App.config#L15-L17
 
