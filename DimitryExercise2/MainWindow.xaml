@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Views:StudentControler Grid.Row="0" Grid.Column="0"  />
         <Views:TeachersController Grid.Row="0" Grid.Column="1"  />
-        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="35" Content="Refresh and show all" Command="{Binding RefreshButtonCommand}"/>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" Content="Refresh and show all" Command="{Binding RefreshButtonCommand}"/>
         <Views:EditStudent Grid.Row="2" Grid.Column="0"/>
         <Views:EditTeacher Grid.Row="2" Grid.Column="1"/>
     </Grid>

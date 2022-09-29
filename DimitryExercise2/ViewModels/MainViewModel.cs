@@ -10,13 +10,13 @@ namespace DimitryExercise2.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        DAL_Service DAL = DAL_Service.Init;
+        readonly DAL_Service DAL = DAL_Service.Init;
         public ICommand RefreshButtonCommand { get; set; }
 
         public MainViewModel()
         {
             RefreshButtonCommand = new RefreshCommand();
-            DAL.RefreshLists();
         }
+
     }
 }

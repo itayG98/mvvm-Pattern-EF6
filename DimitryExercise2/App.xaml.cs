@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace DimitryExercise2
 {
@@ -11,10 +12,6 @@ namespace DimitryExercise2
     public partial class App : Application
     {
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-        }
     }
 
 }
