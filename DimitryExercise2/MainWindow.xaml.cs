@@ -20,9 +20,11 @@ namespace DimitryExercise2
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly DAL_Service DAL = DAL_Service.Init;
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            DAL.RefreshListsEvent?.Invoke();
         }
     }
 }
