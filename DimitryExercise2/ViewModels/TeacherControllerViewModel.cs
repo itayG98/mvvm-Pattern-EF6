@@ -12,7 +12,6 @@ namespace DimitryExercise2.ViewModels
         {
             Teachers = new ObservableCollection<Teacher>();
             GetTeachers();
-            DAL.SaveUpdateEvent += GetTeachers;
             DAL.ChoosedStudentEvent += ChosedStudent;
         }
 
