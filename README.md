@@ -10,7 +10,8 @@ https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c51359
 
 ### Prerequisites
 
-The database i generated use this config setting in my local db named `[DimitryExercise2]` :
+ 1. Generated an empty DataBase named `[DimitryExercise2]` in  `(localdb)\mssqllocaldb`
+ 2. Download
 https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c5135931881f9f2/DimitryExercise2/App.config#L15-L17
 
 
