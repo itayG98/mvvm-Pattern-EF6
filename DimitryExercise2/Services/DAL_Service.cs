@@ -17,6 +17,7 @@ namespace DimitryExercise2
         public Action<Teacher> ChoosedTeacherEvent;
         public Action<Student> ChoosedStudentEvent;
         public Action SaveUpdateEvent;
+        public Action RefreshListsEvent;
 
 
         public static DAL_Service Init
@@ -43,16 +44,21 @@ namespace DimitryExercise2
         {
             try
             {
-                SaveUpdateEvent?.Invoke();
                 foreach (Person p in persons)
                     data.People.AddOrUpdate(p);
                 data.SaveChanges();
             }
-            catch (Exception )
+            catch (Exception)
             {
+                //Can alert here in future
+            }
+            finally
+            {
+                SaveUpdateEvent?.Invoke();
             }
         }
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
 
+        public void RefreshLists() => RefreshListsEvent?.Invoke();
     }
 }

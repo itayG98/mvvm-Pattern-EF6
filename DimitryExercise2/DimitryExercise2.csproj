@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\RefreshCommand.cs" />
     <Compile Include="Model\Courses.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

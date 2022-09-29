@@ -13,10 +13,9 @@ namespace DimitryExercise2.ViewModels
 
         public StudentControllerViewModel()
         {
-            DAL.ChoosedTeacherEvent += DAL_Service_GetTeachersStudents;
             students = new ObservableCollection<Student>();
-            Students.Clear();
-            DAL.GetStudents().ToList().ForEach(s => Students.Add(s));
+            DAL.ChoosedTeacherEvent += DAL_Service_GetTeachersStudents;
+            DAL.RefreshListsEvent += GetStudents;
         }
 
         public void DAL_Service_GetTeachersStudents(Teacher t)
@@ -27,6 +26,13 @@ namespace DimitryExercise2.ViewModels
                 foreach (var stud in t.Students)
                     Students.Add(stud);
             }
+        }
+
+        public void GetStudents()
+        {
+            Students.Clear();
+            foreach (Student student in DAL.GetStudents())
+                Students.Add(student);
         }
     }
 }
