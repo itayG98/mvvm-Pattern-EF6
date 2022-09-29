@@ -23,7 +23,6 @@ namespace DimitryExercise2.ViewModels
             }
         }
 
-
         public MainViewModel()
         {
             RefreshButtonCommand = new RefreshCommand();
@@ -31,8 +30,6 @@ namespace DimitryExercise2.ViewModels
         }
 
         private void RefreshButtonCommand_CanExecuteChanged(object sender, EventArgs e) =>
-
             NotifyPropertyChanged(nameof(RefreshButtonCommandSate));
-
     }
 }
