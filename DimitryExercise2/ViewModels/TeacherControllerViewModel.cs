@@ -6,21 +6,28 @@ namespace DimitryExercise2.ViewModels
     public class TeacherControllerViewModel : ViewModelBase
     {
         readonly DAL_Service DAL = DAL_Service.Init;
-        private readonly ObservableCollection<Teacher> teachers;
-        public ObservableCollection<Teacher> Teachers => teachers;
+        public ObservableCollection<Teacher> Teachers {get;set;}
 
         public TeacherControllerViewModel()
         {
-            teachers = new ObservableCollection<Teacher>();
+            Teachers = new ObservableCollection<Teacher>();
             GetTeachers();
-            DAL.EditPersonEvent += GetTeachers;
+            DAL.SaveUpdateEvent += GetTeachers;
+            DAL.ChoosedStudentEvent += ChosedStudent;
         }
 
         public void GetTeachers()
         {
-            teachers.Clear();
+            Teachers.Clear();
             foreach(Teacher teacher in DAL.GetTeachers())
-                teachers.Add(teacher);
+                Teachers.Add(teacher);
+        }
+
+        private void ChosedStudent(Student s) 
+        {  
+            Teachers.Clear();
+            foreach (Teacher teacher in s.Teacher)
+                Teachers.Add(teacher);
         }
     }
 }

@@ -23,7 +23,6 @@
         </Grid.RowDefinitions>
         <Views:StudentControler Grid.Row="0" Grid.Column="0"  />
         <Views:TeachersController Grid.Row="0" Grid.Column="1"  />
-        <ProgressBar Name="SaveBar" Grid.Row="1" Grid.ColumnSpan="2" Width="500" Height="35" Value="{Binding SaveBarValue}"     />
         <Views:EditStudent Grid.Row="2" Grid.Column="0"/>
         <Views:EditTeacher Grid.Row="2" Grid.Column="1"/>
 

@@ -16,10 +16,7 @@ namespace DimitryExercise2
         private readonly ModelContainer data;
         public Action<Teacher> ChoosedTeacherEvent;
         public Action<Student> ChoosedStudentEvent;
-        public Action EditPersonEvent;
         public Action SaveUpdateEvent;
-        public Action CouldnSaveError;
-
 
 
         public static DAL_Service Init
@@ -50,11 +47,9 @@ namespace DimitryExercise2
                 foreach (Person p in persons)
                     data.People.AddOrUpdate(p);
                 data.SaveChanges();
-                EditPersonEvent?.Invoke();
             }
             catch (Exception )
             {
-                CouldnSaveError?.Invoke();
             }
         }
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
