@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace DimitryExercise2
 {
@@ -39,7 +40,7 @@ namespace DimitryExercise2
 
         public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
 
-        public void SaveChanges() 
+        public void SaveChanges()
         {
             try
             {
@@ -48,30 +49,31 @@ namespace DimitryExercise2
             catch (Exception)
             {
                 //May use in future
-            }      
-        } 
+            }
+        }
         public void ChoosedTeacher(Teacher t)
-            => ChoosedTeacherEvent?.Invoke(t); 
+            => ChoosedTeacherEvent?.Invoke(t);
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
         public void RefreshLists() => RefreshListsEvent?.Invoke();
 
 
-        /*public void AddOrUpdatePerson(params Person[] persons)
+        public void AddOrUpdatePeople(params Person[] persons)
         {
             try
             {
                 foreach (Person p in persons)
                     data.People.AddOrUpdate(p);
-                data.SaveChanges();
+                data.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Can alert here in future
+                string exe = ex.Message;
             }
             finally
             {
                 SaveUpdateEvent?.Invoke();
             }
-        }*/
+        }
     }
 }
