@@ -28,9 +28,9 @@ namespace DimitryExercise2.Command
 
         public RefreshCommand()
         {
-            CanExecuteBool = true;
             DAL.StartSavingUpdateEvent += Hold;
-            DAL.FinishedSavedUpdateEvent += Release;
+            DAL.ReleaseCommandEvent += Release;
+            Release();
         }
 
         private void Hold() => CanExecuteBool = false;
@@ -41,7 +41,9 @@ namespace DimitryExercise2.Command
         {
             if (CanExecute(default))
             {
+                Hold();
                 DAL.SaveChanges();
+                Release();
             }
         }
 

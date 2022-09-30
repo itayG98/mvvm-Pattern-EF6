@@ -13,7 +13,6 @@ namespace DimitryExercise2.ViewModels
         {
             get
             {
-                _refreshButtonCommand = RefreshButtonCommand.CanExecute(default);
                 return _refreshButtonCommand;
             }
             private set
@@ -27,9 +26,10 @@ namespace DimitryExercise2.ViewModels
         {
             RefreshButtonCommand = new RefreshCommand();
             RefreshButtonCommand.CanExecuteChanged += RefreshButtonCommand_CanExecuteChanged;
+            RefreshButtonCommandSate = RefreshButtonCommand.CanExecute(default);
         }
 
         private void RefreshButtonCommand_CanExecuteChanged(object sender, EventArgs e) =>
-            NotifyPropertyChanged(nameof(RefreshButtonCommandSate));
+            _refreshButtonCommand = RefreshButtonCommand.CanExecute(default);
     }
 }

@@ -19,7 +19,7 @@ namespace DimitryExercise2
         public Action<Teacher> ChoosedTeacherEvent;
         public Action<Student> ChoosedStudentEvent;
         public Action StartSavingUpdateEvent;
-        public Action FinishedSavedUpdateEvent;
+        public Action ReleaseCommandEvent;
         public Action RefreshListsEvent;
 
 
@@ -37,11 +37,13 @@ namespace DimitryExercise2
             data = new ModelContainer();
         }
 
-        public IEnumerable<Teacher> GetTeachers() => (data.People.OfType<Teacher>());
+        public IEnumerable<Teacher> GetTeachers() =>
+            data.People.OfType<Teacher>();
 
-        public IEnumerable<Student> GetStudents() => (data.People.OfType<Student>());
+        public IEnumerable<Student> GetStudents() =>
+             data.People.OfType<Student>();
 
-        public void  SaveChanges()
+        public void SaveChanges()
         {
             StartSavingUpdateEvent?.Invoke();
             try
@@ -50,20 +52,17 @@ namespace DimitryExercise2
             }
             catch (Exception)
             {
-                //May use in future
             }
-            finally 
+            finally
             {
-                FinishedSavedUpdateEvent?.Invoke();
                 RefreshListsEvent?.Invoke();
+                ReleaseCommandEvent?.Invoke();
             }
         }
         public void ChoosedTeacher(Teacher t)
             => ChoosedTeacherEvent?.Invoke(t);
         public void ChoosedStudent(Student s) => ChoosedStudentEvent?.Invoke(s);
         public void RefreshLists() => RefreshListsEvent?.Invoke();
-
-
         public void AddOrUpdatePeople(params Person[] persons)
         {
             StartSavingUpdateEvent?.Invoke();
@@ -76,12 +75,11 @@ namespace DimitryExercise2
             catch (Exception ex)
             {
                 //Can alert here in future
-                string msg = ex.Message;
             }
             finally
             {
-                FinishedSavedUpdateEvent?.Invoke();
                 RefreshListsEvent?.Invoke();
+                ReleaseCommandEvent?.Invoke();
             }
         }
     }
