@@ -1,3 +1,6 @@
+--USE master;
+--create DATABASE [DimitryExercise2]
+
 USE [DimitryExercise2]
 GO
 /****** Object:  Table [dbo].[People]    Script Date: 02/10/2022 12:02:30 ******/
