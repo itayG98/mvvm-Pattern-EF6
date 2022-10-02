@@ -1,0 +1,83 @@
+USE [DimitryExercise2]
+GO
+/****** Object:  Table [dbo].[People]    Script Date: 02/10/2022 12:02:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[People](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[BirthDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_People] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[People_Student]    Script Date: 02/10/2022 12:02:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[People_Student](
+	[Grade] [float] NOT NULL,
+	[Courses] [int] NOT NULL,
+	[Id] [int] NOT NULL,
+ CONSTRAINT [PK_People_Student] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[People_Teacher]    Script Date: 02/10/2022 12:02:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[People_Teacher](
+	[Courses] [int] NOT NULL,
+	[Id] [int] NOT NULL,
+ CONSTRAINT [PK_People_Teacher] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TeacherStudent]    Script Date: 02/10/2022 12:02:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TeacherStudent](
+	[Teacher_Id] [int] NOT NULL,
+	[Students_Id] [int] NOT NULL,
+ CONSTRAINT [PK_TeacherStudent] PRIMARY KEY CLUSTERED 
+(
+	[Teacher_Id] ASC,
+	[Students_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[People_Student]  WITH CHECK ADD  CONSTRAINT [FK_Student_inherits_Person] FOREIGN KEY([Id])
+REFERENCES [dbo].[People] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[People_Student] CHECK CONSTRAINT [FK_Student_inherits_Person]
+GO
+ALTER TABLE [dbo].[People_Teacher]  WITH CHECK ADD  CONSTRAINT [FK_Teacher_inherits_Person] FOREIGN KEY([Id])
+REFERENCES [dbo].[People] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[People_Teacher] CHECK CONSTRAINT [FK_Teacher_inherits_Person]
+GO
+ALTER TABLE [dbo].[TeacherStudent]  WITH CHECK ADD  CONSTRAINT [FK_TeacherStudent_Student] FOREIGN KEY([Students_Id])
+REFERENCES [dbo].[People_Student] ([Id])
+GO
+ALTER TABLE [dbo].[TeacherStudent] CHECK CONSTRAINT [FK_TeacherStudent_Student]
+GO
+ALTER TABLE [dbo].[TeacherStudent]  WITH CHECK ADD  CONSTRAINT [FK_TeacherStudent_Teacher] FOREIGN KEY([Teacher_Id])
+REFERENCES [dbo].[People_Teacher] ([Id])
+GO
+ALTER TABLE [dbo].[TeacherStudent] CHECK CONSTRAINT [FK_TeacherStudent_Teacher]
+GO
