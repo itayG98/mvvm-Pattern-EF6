@@ -11,7 +11,7 @@ https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c51359
 ### Prerequisites
 
  1. Use WPF with .NetFramework 4.8
- 2. Generated an empty DataBase named `[DimitryExercise2]` in  `(localdb)\mssqllocaldb` in MSSQL
+ 2. Generate an empty DataBase named `[DimitryExercise2]` in  `(localdb)\mssqllocaldb` in MSSQL
  I added an initial script of sql you can use in order to create it <a target=_blank href=https://github.com/itayG98/mvvm-Pattern-EF6/blob/master/DB_script/Init_sql_script>here</a>
  https://github.com/itayG98/mvvm-Pattern-EF6/blob/9b3b10a5abfb49b80adce9055c5135931881f9f2/DimitryExercise2/App.config#L15-L17
 
